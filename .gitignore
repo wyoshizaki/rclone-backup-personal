@@ -1,0 +1,22 @@
+# This repository is for PUBLIC static pages only.
+# .gitignore does not remove previously tracked files and is not a security boundary.
+.env
+.env.*
+rclone.conf
+*rclone*.conf
+client_secret*.json
+*credentials*.json
+*token*.json
+*.log
+*.bak
+*.zip
+*.7z
+*.key
+*.pem
+__pycache__/
+node_modules/
+# Working records and private screenshots must never be published.
+google_backup_*.md
+google_drive_*.md
+screenshots/
+private/
