@@ -1,0 +1,33 @@
+/* Palette and principles adapted from wyoshizaki/vsido-design.
+   Reference commit: 9719317dcbb70ca43b8acc1b1173556a730cdb21.
+   This is an independently written subset, not the original stylesheet.
+   Keep all color literals in this file. No bundled or remote fonts. */
+:root {
+  --bg: #cfdcf4;
+  --panel: #ffffff;
+  --fg: #17202c;
+  --mut: #4f5c6b;
+  --header-bg: #4169e1;
+  --header-fg: #ffffff;
+  --header-label: #f7f9ff;
+  --header-rule: #2e4aa3;
+  --header-hover: #3455b8;
+  --accent: #4169e1;
+  --accent-dark: #3455b8;
+  --btn-fg: #ffffff;
+  --btn-hover: #3a5ecb;
+  --code: #2a4494;
+  --sunken: #f5f7fa;
+  --line: #ccd4de;
+  --line-soft: #e4e9ef;
+  --graphic-line: #67737f;
+  --row-accent: #ffeda8;
+  --warn: #7d6600;
+  --danger: #d71345;
+  --focus: #17202c;
+  --transparent: transparent;
+  --radius: 12px;
+  --radius-sm: 7px;
+  --font: 'Segoe UI', Meiryo, 'Noto Sans CJK JP', sans-serif;
+  --font-mono: Consolas, 'SFMono-Regular', monospace;
+}
