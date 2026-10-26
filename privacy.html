@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="rclone-backup-personalがアクセスするデータ、利用目的、保存、第三者提供、削除、Google権限の取り消しについて説明します。">
+<title>プライバシーポリシー | rclone-backup-personal</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="header"><div class="header-inner">
+<a class="brand" href="index.html">rclone-backup-personal<small>PERSONAL BACKUP · APPLICATION INFORMATION</small></a>
+<nav aria-label="メインナビゲーション"><a href="index.html" >アプリについて</a><a href="privacy.html" aria-current="page">プライバシー</a></nav>
+</div></header>
+<main id="main" class="shell">
+<p class="crumb"><a href="index.html">アプリについて</a> / プライバシーポリシー</p>
+<div class="policy-layout">
+<aside class="toc panel" aria-label="目次"><h2>このページの内容</h2><ol><li><a href="#about">対象と運用者</a></li><li><a href="#access">アクセスするデータ</a></li><li><a href="#purpose">利用目的</a></li><li><a href="#storage">保存と保護</a></li><li><a href="#sharing">第三者への提供</a></li><li><a href="#retention">保管期間と削除</a></li><li><a href="#website">Webサイトの通信</a></li><li><a href="#rights">許可の取り消し・連絡先</a></li><li><a href="#changes">変更と運用開始</a></li></ol></aside>
+<article class="document panel">
+<p class="kicker">DATA HANDLING POLICY</p>
+<h1>プライバシーポリシー</h1>
+<p class="app-name">rclone-backup-personal</p>
+<p class="small">最終更新日：2026年10月26日 · 版：1.0</p>
+<p class="intro">本ポリシーは、個人用バックアップ設定「rclone-backup-personal」（以下「本アプリ」）と、その説明用Webサイトにおけるデータの取り扱いを示します。公開サイトと、ローカルPCで動くバックアップ処理は別のものです。</p>
+<section id="about"><h2>1. 対象と運用者</h2><p>本アプリは、運用者 <a href="https://github.com/wyoshizaki">wyoshizaki</a> が本人のGoogleアカウントに対して利用する、rcloneを使った個人用のバックアップ構成です。一般向けにアカウント登録やバックアップサービスを提供するものではありません。</p><p>会社・組織用の別のOAuthアプリ、別アカウントの管理設定には、本ポリシーをそのまま流用しません。Googleおよびrcloneの各サービスは、それぞれの提供者によって運営されています。</p></section>
+<section id="access"><h2>2. アクセスするデータ</h2><p>Google Drive APIには、本人がGoogleの認可画面で許可した <code>drive.readonly</code> の権限でアクセスします。読み取り権限は、設定上の取得対象フォルダーだけに限定されるものではありません。</p>
+<dl class="data-list">
+<div><dt>ファイルとフォルダーの情報</dt><dd>ファイル名、ID、フォルダー構成、種類、サイズ、更新日時、Googleが返すハッシュ等。対象の特定、変更検出、照合に使用します。</dd></div>
+<div><dt>ファイル本体・書き出した文書</dt><dd>アクセス可能なファイル内容、およびGoogleドキュメント等を対応形式へ書き出した内容。復元用のコピーとして保存します。取得対象は運用者が設定します。</dd></div>
+<div><dt>Takeoutアーカイブ</dt><dd>本人が別途Google Takeoutを使ってGoogle Driveに保存した写真・動画等のアーカイブを、Driveファイルとして取得する場合があります。Google Photos APIやGmail APIへ直接アクセスしません。</dd></div>
+<div><dt>認証情報・運用ログ</dt><dd>ローカルの認証設定にはアクセストークン、更新用トークン等を含みます。実行ログには時刻、結果、転送量、エラー、対象パスやファイル名が含まれる場合があります。これらは公開サイトに掲載しません。</dd></div>
+</dl><p>本アプリは、Google Driveの元データのアップロード、変更、削除、共有設定の変更を行いません。Googleアカウントのパスワードをこのサイトに入力してもらうこともありません。</p></section>
+<section id="purpose"><h2>3. 利用目的</h2><p>取得データは、本人のローカルバックアップの作成・更新、取得結果の確認、障害調査、および本人が管理する保存先への復元のために使用します。バックアップ元の障害、アクセス不能、誤削除等に備えることが目的です。</p><p>広告配信、販売、利用者の追跡、第三者向けの分析、汎用AI・機械学習モデルの学習には使用しません。Google APIから得た情報の利用と他のアプリへの移転は、<a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>（Limited Use要件を含む）に従います。</p></section>
+<section id="storage"><h2>4. 保存と保護</h2><p>バックアップは、運用者が管理するPCに接続されたローカルストレージへ保存する設計です。バックアップ本体と退避履歴は、rclone cryptを通じて暗号化領域に保存します。復元の際には、本人が指定した場所に平文ファイルを取り出します。</p><p>OAuthトークン・アプリ設定・暗号化鍵は、運用者が管理するPCや別保管の復元用媒体で管理します。ローカルのログが暗号化されるとは限りません。PCのアクセス制限、設定ファイルの保護、鍵の別保管、復元試験を運用開始前の確認事項とします。</p><p>暗号化はPCへの不正ログインやマルウェア、媒体の故障など、あらゆるリスクをなくすものではありません。Googleの固有機能や過去の変更履歴等をすべて再現できるとも保証しません。</p></section>
+<section id="sharing"><h2>5. 第三者への提供</h2><p>本アプリは、取得したDriveデータ、写真、文書、認証トークン、暗号化鍵を、本Webサイト、公開GitHubリポジトリ、広告事業者、AIサービスへ送信しません。Googleとの通信は、認証とDriveデータの取得に必要な範囲で行います。</p><p>現在の説明範囲に、外部への自動メール送信や監視サービスへの通知は含めません。外部監視等を追加する際は、送信先・送信する情報・目的を明示して本ポリシーを更新し、その内容を確認してから利用します。</p><p>法律上必要な開示等が生じる場合を除き、本人のバックアップ目的を超えてデータを第三者へ提供しません。</p></section>
+<section id="retention"><h2>6. 保管期間と削除</h2><p>取得したファイルと退避履歴は、運用者が復元に必要と判断する間、本人が管理する保存先に保持します。固定の90日保存や無期限保存を保証するものではありません。ローカル履歴の整理は、運用者が保存内容と取得結果を確認して行います。</p><p>Google側でファイルが削除された場合でも、復元のためローカルの旧版が残ることがあります。不要なバックアップ、履歴、復元した平文ファイル、ログ、鍵の控えは、運用者がそれぞれの保管場所から削除します。</p><p>OAuthの許可を取り消しても、すでに取得したローカルデータは自動的には削除されません。完全に利用を終える場合は、バックアップの停止、認可の取り消し、ローカルデータと認証情報の削除を別々に行います。</p></section>
+<section id="website"><h2>7. Webサイトの通信とログ</h2><p>この説明サイトには、Googleログイン、アップロード、問い合わせフォーム、独自のCookie、アクセス解析、広告、外部フォント、外部JavaScriptを組み込みません。ページとCSSは静的ファイルとして配信します。</p><p>ホスティング先のGitHub Pagesは、セキュリティ目的で閲覧者のIPアドレスを記録します。これはサイトにログインしていない閲覧者にも適用されます。詳細は <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHubのプライバシーステートメント</a>を参照してください。</p><p>外部リンクはクリックした場合にのみ外部のページへ移動します。その後のデータの取り扱いは、移動先のサービスの方針に従います。</p></section>
+<section id="rights"><h2>8. 許可の取り消し・お問い合わせ</h2><p>運用者は、<a href="https://myaccount.google.com/connections">Googleアカウントの接続管理</a>で本アプリへの許可を取り消せます。以後の取得は認可が無効になると停止します。取得済みのコピーは前項のとおり別途管理します。</p><p>連絡先は、Googleの同意画面に表示するユーザーサポートメールです。一般的なサイトの不備は、<a href="https://github.com/wyoshizaki/rclone-backup-personal/issues">このサイトのGitHub Issues</a>にも投稿できます。Issuesは公開されるため、実データ、実ファイル名、認証コード、トークン、パスワード、鍵を記載しないでください。</p></section>
+<section id="changes"><h2>9. ポリシーの変更と運用開始</h2><p>権限、対象データ、利用目的、保存先、第三者への提供を変更する場合は、実施前に本ポリシーを更新し、必要な説明と同意を行います。変更日と内容はサイトの更新履歴で管理します。</p><p class="notice">このページを公開しただけでは、Googleの審査承認、OAuth設定の完了、バックアップの取得成功、復元の成功を意味しません。実際の認証・暗号化・復元を確認してから本番運用を開始します。</p></section>
+</article></div></main>
+<footer class="footer"><div class="footer-inner"><p>運用者：<a href="https://github.com/wyoshizaki">wyoshizaki</a> · 個人管理のバックアップ構成<br>本アプリは Google または rclone プロジェクトの公式サービスではありません。一般向けのバックアップサービスとしては提供していません。</p><nav aria-label="フッターナビゲーション"><a href="privacy.html">プライバシーポリシー</a><a href="index.html#contact">お問い合わせ</a></nav></div></footer>
+</body></html>
