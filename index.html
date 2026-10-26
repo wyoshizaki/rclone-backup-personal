@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="rcloneを利用した個人用Google Driveバックアップの目的、読み取り専用の権限、データの取り扱いを説明します。">
+<title>rclone-backup-personal | 個人用バックアップ</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="header"><div class="header-inner">
+<a class="brand" href="index.html">rclone-backup-personal<small>PERSONAL BACKUP · APPLICATION INFORMATION</small></a>
+<nav aria-label="メインナビゲーション"><a href="index.html" aria-current="page">アプリについて</a><a href="privacy.html" >プライバシー</a></nav>
+</div></header>
+<main id="main" class="shell">
+<section class="hero panel" aria-labelledby="hero-title">
+<div>
+<p class="kicker">READ ONLY. LOCAL BACKUP.</p>
+<h1 id="hero-title">クラウドのデータを、<br>手元で守る。</h1>
+<p class="app-name">rclone-backup-personal</p>
+<p class="lead">運用者本人の Google Drive を、本人が管理するPCとストレージへバックアップするための個人用アプリ設定です。オープンソースの <a href="https://rclone.org/">rclone</a> を利用します。</p>
+<div class="actions"><a class="button" href="privacy.html">データの取り扱いを確認</a><a class="link" href="#permissions">要求する権限を見る</a></div>
+</div>
+<figure class="flow">
+<figcaption>バックアップの設計</figcaption>
+<div class="flow-step"><span class="step-no" aria-hidden="true">01</span><div><b>本人の Google Drive</b><small>アクセスを許可したデータを取得</small></div></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="flow-step"><span class="step-no" aria-hidden="true">02</span><div><b>本人のPC上の rclone</b><small>読み取り専用で転送・比較</small></div></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="flow-step"><span class="step-no" aria-hidden="true">03</span><div><b>本人が管理するストレージ</b><small>cryptで暗号化するバックアップ領域</small></div></div>
+</figure>
+</section>
+<p class="notice"><strong>このサイトは説明専用です。</strong> Googleへのログイン、ファイルの閲覧・送信、認証情報の入力は、このサイトでは行いません。</p>
+<div class="cards">
+<section class="card panel"><span class="no">01 / PERMISSION</span><h2>読み取り専用</h2><p>必要な権限は <code>drive.readonly</code> です。認証したアカウントがアクセスできるDriveファイルを閲覧・取得します。元データの編集・削除・共有変更は行いません。</p></section>
+<section class="card panel"><span class="no">02 / STORAGE</span><h2>手元に保管</h2><p>取得先は運用者が管理するローカルストレージです。バックアップ本体と履歴は、rclone cryptの暗号化領域へ保存する構成とします。</p></section>
+<section class="card panel"><span class="no">03 / SEPARATION</span><h2>公開サイトと分離</h2><p>この公開サイトやGitHubリポジトリへ、Driveのデータ、写真、認証トークン、暗号化鍵を送信しません。バックアップ処理はPC上で行います。</p></section>
+</div>
+<section id="permissions" class="details panel" aria-labelledby="permission-title"><div class="details-grid">
+<div><h2 id="permission-title">要求する権限と目的</h2><p>ファイルの一覧・内容・更新日時などを読み取り、ローカルバックアップの作成、更新、整合性の確認、復元に使用します。</p><code class="code-block">https://www.googleapis.com/auth/drive.readonly</code></div>
+<div><h3>権限の範囲について</h3><p>この権限は、アプリが作ったファイルだけに限定されるものではありません。取得するフォルダーは運用設定で絞りますが、権限自体は認証したアカウントがアクセス可能なDriveファイルに及びます。</p><p class="small">このサイトを開くだけではアクセス権は付与されません。認証はGoogleの画面で行い、バックアップ用PCだけがトークンを使用します。</p></div>
+</div></section>
+<section class="details panel" aria-labelledby="scope-title"><h2 id="scope-title">対象と、対象ではないもの</h2><p>対象は運用者本人が許可したGoogle Driveのデータです。Googleフォトについては、本人がGoogle TakeoutでDriveへ書き出したアーカイブを、Drive上のファイルとして取得することがあります。本アプリからGoogle Photos APIやGmail APIへアクセスするものではありません。</p><p class="small">Google固有形式のファイルは、APIが対応する形式に書き出して保存します。共有権限、コメント、変更履歴などを含むGoogleサービス全体の完全な復元を保証するものではありません。別の組織用アプリ・認証は、この個人用アプリの説明に含めません。</p></section>
+<section id="contact" class="details panel" aria-labelledby="contact-title"><div class="details-grid"><div><h2 id="contact-title">お問い合わせ・権限の取り消し</h2><p>運用者はGitHubアカウント <a href="https://github.com/wyoshizaki">wyoshizaki</a> です。本人用の設定に関する連絡は、Googleの同意画面に表示されるサポートメールを利用してください。</p><p>一般的なページの不備は <a href="https://github.com/wyoshizaki/rclone-backup-personal/issues">サイトのIssues</a> でも受け付けます。<strong>公開投稿に認証情報やファイルの内容を書かないでください。</strong></p></div><div><h3>接続を停止するとき</h3><p><a href="https://myaccount.google.com/connections">Googleアカウントの接続管理</a>から本アプリの許可を取り消せます。取得済みのローカルコピーは自動削除されないため、不要になったものは運用者が別途削除します。</p><a class="link" href="privacy.html#retention">保管・削除の方針を読む</a></div></div></section>
+</main>
+<footer class="footer"><div class="footer-inner"><p>運用者：<a href="https://github.com/wyoshizaki">wyoshizaki</a> · 個人管理のバックアップ構成<br>本アプリは Google または rclone プロジェクトの公式サービスではありません。一般向けのバックアップサービスとしては提供していません。</p><nav aria-label="フッターナビゲーション"><a href="privacy.html">プライバシーポリシー</a><a href="index.html#contact">お問い合わせ</a></nav></div></footer>
+</body></html>
